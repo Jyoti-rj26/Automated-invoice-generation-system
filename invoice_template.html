@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>Invoice</h1>
+    <p>Date: {{ invoice.date }}</p>
+    <p>Client: {{ invoice.client }}</p>
+    <table>
+        <tr><th>Description</th><th>Rate</th><th>Hours</th><th>Subtotal</th></tr>
+        {% for s in invoice.services %}
+        <tr>
+            <td>{{ s.description }}</td>
+            <td>${{ s.rate }}</td>
+            <td>{{ s.hours }}</td>
+            <td>${{ s.rate * s.hours }}</td>
+        </tr>
+        {% endfor %}
+        <tr><td colspan="3"><strong>Total</strong></td><td>${{ invoice.total }}</td></tr>
+    </table>
+</body>
+</html>
